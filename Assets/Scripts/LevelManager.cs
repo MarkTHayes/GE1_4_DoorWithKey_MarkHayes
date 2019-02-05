@@ -20,6 +20,8 @@ public class LevelManager : MonoBehaviour {
     public float step;
     public float waitTime;
 
+    public bool switchOn;
+
     
 
 
@@ -69,7 +71,17 @@ public class LevelManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && hasKey && hittingSwitch)
         {
 
-            MoveDoor(true);
+            if (!switchOn)
+            {
+                MoveDoor(true);
+                switchOn = true;
+            }
+            else if (switchOn)
+            {
+                MoveDoor(false);
+                switchOn = false;
+
+            }
 
         }
 

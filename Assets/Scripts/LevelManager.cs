@@ -17,6 +17,11 @@ public class LevelManager : MonoBehaviour {
     public bool hasKey;
     public bool hittingSwitch;
 
+    public float step;
+    public float waitTime;
+
+    
+
 
     private void Awake()
     {
@@ -44,6 +49,8 @@ public class LevelManager : MonoBehaviour {
 
         InputManager();
 
+        
+
 		
 	}
 
@@ -62,7 +69,49 @@ public class LevelManager : MonoBehaviour {
         if (Input.GetKeyDown(KeyCode.Space) && hasKey && hittingSwitch)
         {
 
+            MoveDoor(true);
 
+        }
+
+
+    }
+
+    public void MoveDoor(bool closed)
+    {
+
+        if (closed)
+        {
+            StartCoroutine("OpenDoor");
+        }
+        else
+        {
+
+            StartCoroutine("CloseDoor");
+
+        }
+
+    }
+
+    public IEnumerator OpenDoor( )
+    {
+        while (door.transform.position.y < 0)
+        {
+
+            door.transform.Translate(0, step, 0);
+            yield return new WaitForSeconds(waitTime);
+
+        }
+
+
+    }
+
+    public IEnumerator CloseDoor()
+    {
+        while (door.transform.position.y > -3)
+        {
+
+            door.transform.Translate(0, -step, 0);
+            yield return new WaitForSeconds(waitTime);
 
         }
 

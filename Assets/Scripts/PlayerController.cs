@@ -4,8 +4,14 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour {
 
+    
+
+
+
 	// Use this for initialization
 	void Start () {
+
+
 		
 	}
 	
@@ -28,6 +34,13 @@ public class PlayerController : MonoBehaviour {
         {
 
             LevelManager.instance.hittingSwitch = true;
+
+        }
+
+        if (col.gameObject.tag == "CloseDoor")
+        {
+
+            LevelManager.instance.MoveDoor(false);
 
         }
 
